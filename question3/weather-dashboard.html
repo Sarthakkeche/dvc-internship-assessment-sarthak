@@ -1,28 +1,81 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Weather</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Dashboard</title>
+
 <style>
-body{font-family:sans-serif;text-align:center;padding:30px}
-input,button{padding:10px}
-.card{margin-top:20px}
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#4e73df,#1cc88a);
+font-family:'Segoe UI',sans-serif;
+color:white;
+}
+
+.container{
+background:rgba(255,255,255,0.15);
+padding:40px;
+border-radius:25px;
+backdrop-filter:blur(15px);
+text-align:center;
+width:350px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+input{
+padding:10px;
+border-radius:8px;
+border:none;
+width:65%;
+}
+
+button{
+padding:10px;
+border:none;
+border-radius:8px;
+background:#fff;
+cursor:pointer;
+margin-left:5px;
+}
+
+.card{
+margin-top:20px;
+background:rgba(255,255,255,0.2);
+padding:20px;
+border-radius:15px;
+}
+
+.loader{
+margin-top:15px;
+display:none;
+}
 </style>
 </head>
+
 <body>
 
+<div class="container">
 <h2>Weather Dashboard</h2>
+
 <input id="city" placeholder="Enter city">
 <button onclick="getWeather()">Search</button>
 
+<div class="loader" id="loader">Loading...</div>
 <div id="result"></div>
+
+</div>
 
 <script>
 async function getWeather(){
 const city=document.getElementById("city").value;
 if(!city) return alert("Enter city");
 
-localStorage.setItem("city",city);
+document.getElementById("loader").style.display="block";
 
 try{
 const res=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=21dcd3b00eaf5b69e5b36e763c0e6852&units=metric`);
@@ -30,22 +83,20 @@ const data=await res.json();
 
 if(data.cod!=200) throw "City not found";
 
+document.getElementById("loader").style.display="none";
+
 document.getElementById("result").innerHTML=
 `<div class="card">
 <h3>${data.name}</h3>
 <p>${data.weather[0].description}</p>
-<p>Temp: ${data.main.temp}°C</p>
-<p>Humidity: ${data.main.humidity}%</p>
+<p>🌡 Temp: ${data.main.temp}°C</p>
+<p>💧 Humidity: ${data.main.humidity}%</p>
 </div>`;
 }
 catch(err){
+document.getElementById("loader").style.display="none";
 document.getElementById("result").innerHTML="Error loading data";
 }
-}
-
-window.onload=()=>{
-const last=localStorage.getItem("city");
-if(last) document.getElementById("city").value=last;
 }
 </script>
 

@@ -1,31 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product Card</title>
+
 <style>
-body{font-family:sans-serif;display:flex;justify-content:center;padding:40px;background:#f5f5f5}
-.card{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.1);padding:20px;max-width:320px;width:100%}
-img{width:100%;border-radius:8px}
-.price{color:#e63946;font-size:20px}
-.old{text-decoration:line-through;color:gray}
-button{padding:8px 12px;margin:5px}
-.qty{display:flex;align-items:center;gap:10px}
-.msg{color:green;margin-top:10px;display:none}
-@media(min-width:768px){.card{max-width:500px}}
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:linear-gradient(135deg,#1d2671,#c33764);
+font-family:'Segoe UI',sans-serif;
+}
+
+.card{
+background:white;
+border-radius:20px;
+padding:25px;
+width:320px;
+box-shadow:0 15px 40px rgba(0,0,0,0.3);
+text-align:center;
+}
+
+img{
+width:100%;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+.price{
+font-size:22px;
+color:#e63946;
+font-weight:bold;
+}
+
+.old{
+text-decoration:line-through;
+color:gray;
+font-size:14px;
+}
+
+.qty{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:15px;
+margin:15px 0;
+}
+
+button{
+background:#1d2671;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:8px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#c33764;
+}
+
+.msg{
+margin-top:10px;
+color:green;
+font-weight:bold;
+display:none;
+}
 </style>
 </head>
+
 <body>
 
 <div class="card">
-<img src="https://via.placeholder.com/300" onerror="this.src='https://via.placeholder.com/300?text=No+Image'">
+<img src="https://images.unsplash.com/photo-1518441902117-78b8c9eafaf5" 
+onerror="this.src='https://via.placeholder.com/300'">
 
 <h2>Wireless Headphones</h2>
 
 <p class="price">₹1999 <span class="old">₹2999</span></p>
 
-<p>High quality sound with noise cancellation.</p>
+<p>Premium noise cancelling wireless headphones.</p>
 
 <div class="qty">
 <button id="dec">-</button>
@@ -35,25 +93,37 @@ button{padding:8px 12px;margin:5px}
 
 <button id="add">Add to Cart</button>
 
-<div class="msg" id="msg">Added to cart ✔</div>
+<div class="msg" id="msg">✔ Added to cart</div>
 </div>
 
 <script>
-let c=1;
-const count=document.getElementById("count");
+let count=1;
+const countEl=document.getElementById("count");
 
-inc.onclick=()=>{ if(c<10){c++;count.innerText=c}};
-dec.onclick=()=>{ if(c>1){c--;count.innerText=c}};
+document.getElementById("inc").onclick=()=>{
+if(count<10){
+count++;
+countEl.innerText=count;
+}
+}
 
-add.onclick=()=>{
+document.getElementById("dec").onclick=()=>{
+if(count>1){
+count--;
+countEl.innerText=count;
+}
+}
+
+document.getElementById("add").onclick=()=>{
 document.getElementById("msg").style.display="block";
 console.log({
 product:"Wireless Headphones",
-quantity:c,
+quantity:count,
 price:1999,
-total:c*1999
-})
+total:count*1999
+});
 }
 </script>
+
 </body>
 </html>

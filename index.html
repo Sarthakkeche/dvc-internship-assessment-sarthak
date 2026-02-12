@@ -1,15 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DVC Internship Assessment</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#1d2671,#c33764);
+color:#fff;
+}
+.container{
+text-align:center;
+}
+h1{
+margin-bottom:40px;
+font-size:32px;
+}
+.cards{
+display:flex;
+gap:30px;
+flex-wrap:wrap;
+justify-content:center;
+}
+.card{
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(15px);
+padding:30px;
+width:260px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+transition:0.3s;
+cursor:pointer;
+text-decoration:none;
+color:white;
+}
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 30px rgba(0,0,0,0.4);
+}
+.card h2{
+margin-bottom:10px;
+}
+.card p{
+opacity:0.8;
+}
+</style>
 </head>
 <body>
+
+<div class="container">
 <h1>DVC Internship Assessment</h1>
 
-<ul>
-<li><a href="question1/">Question 1 - Product Card</a></li>
-<li><a href="question3/weather-dashboard.html">Question 3 - Weather Dashboard</a></li>
-</ul>
+<div class="cards">
+
+<a href="question1/" class="card">
+<h2>🛒 Product Card</h2>
+<p>Responsive UI with quantity control & validation</p>
+</a>
+
+<a href="question3/weather-dashboard.html" class="card">
+<h2>🌦 Weather Dashboard</h2>
+<p>Live weather using OpenWeather API</p>
+</a>
+
+</div>
+</div>
 
 </body>
 </html>
