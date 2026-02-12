@@ -12,6 +12,10 @@ Question 3 - Weather Dashboard:
 https://sarthakkeche.github.io/dvc-internship-assessment-sarthak/question3/weather-dashboard.html
 
 ---
+Question 2 - Tested on WordPress 6.x
+Fully compatible with Gutenberg
+Security best practices followed
+
 
 ## Candidate Details
 Name: Sarthak Keche  
