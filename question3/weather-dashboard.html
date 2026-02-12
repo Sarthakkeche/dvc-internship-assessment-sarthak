@@ -78,7 +78,10 @@ if(!city) return alert("Enter city");
 document.getElementById("loader").style.display="block";
 
 try{
-const res=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=21dcd3b00eaf5b69e5b36e763c0e6852&units=metric`);
+    // NOTE: API key removed for security reasons.
+// Replace YOUR_API_KEY_HERE with your own key.
+
+const res=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=YOUR_API_KEY_HERE&units=metric`);
 const data=await res.json();
 
 if(data.cod!=200) throw "City not found";
