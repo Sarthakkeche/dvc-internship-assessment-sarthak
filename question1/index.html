@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Product Card</title>
+<style>
+body{font-family:sans-serif;display:flex;justify-content:center;padding:40px;background:#f5f5f5}
+.card{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.1);padding:20px;max-width:320px;width:100%}
+img{width:100%;border-radius:8px}
+.price{color:#e63946;font-size:20px}
+.old{text-decoration:line-through;color:gray}
+button{padding:8px 12px;margin:5px}
+.qty{display:flex;align-items:center;gap:10px}
+.msg{color:green;margin-top:10px;display:none}
+@media(min-width:768px){.card{max-width:500px}}
+</style>
+</head>
+<body>
+
+<div class="card">
+<img src="https://via.placeholder.com/300" onerror="this.src='https://via.placeholder.com/300?text=No+Image'">
+
+<h2>Wireless Headphones</h2>
+
+<p class="price">₹1999 <span class="old">₹2999</span></p>
+
+<p>High quality sound with noise cancellation.</p>
+
+<div class="qty">
+<button id="dec">-</button>
+<span id="count">1</span>
+<button id="inc">+</button>
+</div>
+
+<button id="add">Add to Cart</button>
+
+<div class="msg" id="msg">Added to cart ✔</div>
+</div>
+
+<script>
+let c=1;
+const count=document.getElementById("count");
+
+inc.onclick=()=>{ if(c<10){c++;count.innerText=c}};
+dec.onclick=()=>{ if(c>1){c--;count.innerText=c}};
+
+add.onclick=()=>{
+document.getElementById("msg").style.display="block";
+console.log({
+product:"Wireless Headphones",
+quantity:c,
+price:1999,
+total:c*1999
+})
+}
+</script>
+</body>
+</html>

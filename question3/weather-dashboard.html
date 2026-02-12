@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Weather</title>
+<style>
+body{font-family:sans-serif;text-align:center;padding:30px}
+input,button{padding:10px}
+.card{margin-top:20px}
+</style>
+</head>
+<body>
+
+<h2>Weather Dashboard</h2>
+<input id="city" placeholder="Enter city">
+<button onclick="getWeather()">Search</button>
+
+<div id="result"></div>
+
+<script>
+async function getWeather(){
+const city=document.getElementById("city").value;
+if(!city) return alert("Enter city");
+
+localStorage.setItem("city",city);
+
+try{
+const res=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=YOUR_API_KEY&units=metric`);
+const data=await res.json();
+
+if(data.cod!=200) throw "City not found";
+
+document.getElementById("result").innerHTML=
+`<div class="card">
+<h3>${data.name}</h3>
+<p>${data.weather[0].description}</p>
+<p>Temp: ${data.main.temp}°C</p>
+<p>Humidity: ${data.main.humidity}%</p>
+</div>`;
+}
+catch(err){
+document.getElementById("result").innerHTML="Error loading data";
+}
+}
+
+window.onload=()=>{
+const last=localStorage.getItem("city");
+if(last) document.getElementById("city").value=last;
+}
+</script>
+
+</body>
+</html>
